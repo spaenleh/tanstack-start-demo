@@ -5,6 +5,9 @@ import {
 } from "@tanstack/react-router";
 import { Meta, Scripts } from "@tanstack/start";
 import type { ReactNode } from "react";
+import "../app.css";
+import { CssBaseline, extendTheme, ThemeProvider } from "@mui/joy";
+import { NotFound } from "../components/NotFound";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -22,13 +25,39 @@ export const Route = createRootRoute({
     ],
   }),
   component: RootComponent,
+  notFoundComponent: NotFoundComponent,
 });
+
+const theme = extendTheme({
+  fontFamily: {
+    body: "Nunito Variable",
+  },
+});
+
+function Wrapper({ children }: { children: ReactNode }) {
+  return (
+    <RootDocument>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
+    </RootDocument>
+  );
+}
 
 function RootComponent() {
   return (
-    <RootDocument>
+    <Wrapper>
       <Outlet />
-    </RootDocument>
+    </Wrapper>
+  );
+}
+
+function NotFoundComponent() {
+  return (
+    <Wrapper>
+      <NotFound />
+    </Wrapper>
   );
 }
 
