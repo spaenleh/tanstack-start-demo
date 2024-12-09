@@ -1,7 +1,7 @@
 import * as fs from "node:fs";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/start";
-import Button from "@mui/joy/Button";
+import { Button } from "@/components/ui/button";
 const filePath = "count.txt";
 
 async function readCount() {
@@ -34,7 +34,6 @@ function Home() {
 
   return (
     <Button
-      type="button"
       onClick={() => {
         updateCount({ data: 1 }).then(() => {
           router.invalidate();

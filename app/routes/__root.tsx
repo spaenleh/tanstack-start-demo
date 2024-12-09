@@ -5,9 +5,9 @@ import {
 } from "@tanstack/react-router";
 import { Meta, Scripts } from "@tanstack/start";
 import type { ReactNode } from "react";
-import "../app.css";
-import { CssBaseline, extendTheme, ThemeProvider } from "@mui/joy";
 import { NotFound } from "../components/NotFound";
+import appCSS from "@/styles/global.css?url";
+import { Header } from "@/components/ui/header";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -23,32 +23,23 @@ export const Route = createRootRoute({
         title: "TanStack Start Starter",
       },
     ],
+    links: [{ rel: "stylesheet", href: appCSS }],
   }),
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
 
-const theme = extendTheme({
-  fontFamily: {
-    body: "Nunito Variable",
-  },
-});
-
-function Wrapper({ children }: { children: ReactNode }) {
-  return (
-    <RootDocument>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {children}
-      </ThemeProvider>
-    </RootDocument>
-  );
+function Wrapper({ children }: Readonly<{ children: ReactNode }>) {
+  return <RootDocument>{children}</RootDocument>;
 }
 
 function RootComponent() {
   return (
     <Wrapper>
-      <Outlet />
+      <Header />
+      <div className="flex flex-1 flex-col gap-4 p-4">
+        <Outlet />
+      </div>
     </Wrapper>
   );
 }
