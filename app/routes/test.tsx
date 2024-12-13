@@ -1,6 +1,5 @@
-import Typography from "@mui/joy/Typography";
-import Sheet from "@mui/joy/Sheet";
-import { createFileRoute } from "@tanstack/react-router";
+import { Sheet, Typography } from "@mui/joy";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/test")({
   component: RouteComponent,
@@ -8,8 +7,11 @@ export const Route = createFileRoute("/test")({
 
 function RouteComponent() {
   return (
-    <Sheet>
-      <Typography sx={{ color: "red" }}>Hello "/test"!</Typography>
+    <Sheet sx={{ p: 3 }}>
+      <Typography variant="soft" color="primary">
+        Hello "/test"!
+      </Typography>
+      <Link to="/">Home</Link>
     </Sheet>
   );
 }

@@ -1,7 +1,7 @@
 import * as fs from "node:fs";
-import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/start";
-import Button from "@mui/joy/Button";
+import { Button, Stack, Typography } from "@mui/joy";
 const filePath = "count.txt";
 
 async function readCount() {
@@ -33,15 +33,21 @@ function Home() {
   const state = Route.useLoaderData();
 
   return (
-    <Button
-      type="button"
-      onClick={() => {
-        updateCount({ data: 1 }).then(() => {
-          router.invalidate();
-        });
-      }}
-    >
-      Add 1 to {state}?
-    </Button>
+    <Stack gap={2}>
+      <Typography>
+        You can click on the button to call a server function
+      </Typography>
+      <Button
+        type="button"
+        onClick={() => {
+          updateCount({ data: 1 }).then(() => {
+            router.invalidate();
+          });
+        }}
+      >
+        Add 1 to {state}?
+      </Button>
+      <Link to="/test">Test page</Link>
+    </Stack>
   );
 }
