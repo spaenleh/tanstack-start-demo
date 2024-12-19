@@ -5,7 +5,6 @@ import tsConfigPaths from "vite-tsconfig-paths";
 export default defineConfig({
   server: {
     preset: "node-server",
-    prerender: { routes: ["/"], crawlLinks: true },
   },
   vite: {
     ...(process.env.NODE_ENV === "production" && {
