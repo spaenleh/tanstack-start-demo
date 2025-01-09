@@ -10,7 +10,6 @@ import { NotFound } from "../components/NotFound";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 
-export const emotionCache = createCache({ key: "css" });
 
 export const Route = createRootRoute({
   head: () => ({
@@ -39,6 +38,8 @@ const theme = extendTheme({
 });
 
 function RootDocument() {
+ const emotionCache = createCache({ key: "mui-emotion" });
+
   return (
     <html lang="en">
       <head>
